@@ -1,0 +1,446 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Josefin+Sans:wght@300&display=swap');
+
+$Alata: 'Alata', sans-serif;
+$Josefin: 'Josefin Sans', sans-serif;
+
+$Mobile: 375px;
+$Desktop: 1440px;
+
+$Size: 15px;
+
+$White: hsl(0, 0%, 100%);
+$Black: hsl(0, 0%, 0%);
+$DarkGray: hsl(0, 0%, 55%);
+$VeryDarkGray: hsl(0, 0%, 41%);
+
+*, ::before, ::after{
+    box-sizing: border-box;
+    font-family: $Alata;
+    color: #000;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+a{
+    text-decoration: none;
+    color: $White;
+}
+
+li{
+    list-style: none;
+}
+
+p{
+    font-family: $Josefin;
+}
+
+    button{
+        border: 1px solid $Black;
+        color: $Black;
+        background: $White;
+        padding: 1rem 2rem;
+        cursor: pointer;
+        transition: color .3s ease, background .3s ease-in;
+        &:hover{
+            background: $Black;
+            color: $White;
+        }
+    }
+
+.cover{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(images/desktop/image-hero.jpg);
+    background-size: cover;
+    &-center{
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: start;
+        height: 75vh;
+    }
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navigation{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &-logo{
+        color: $White;
+        font-size: 30px;
+        font-weight: bold;
+    }
+    &-links{
+        display: flex;
+        justify-content: space-around;
+        li{
+            position: relative;
+            margin: 0 1rem;
+            padding: 0.25rem 0;
+            &::before{
+                content: '';
+                display: block;
+                position: absolute;
+                width: 100%;
+                background: $White;
+                height: 1px;
+                bottom: 0;
+                transform-origin: 50% 0;
+                transform: scaleX(0);
+                transition: transform .4s;
+            }
+            &:hover::before{
+                transform-origin: 50% 0;
+                transform: scaleX(1);
+            }
+        }
+    }
+    &-burger{
+        display: none;
+    }
+}
+
+.header{
+    border: 2px solid $White;
+    &-card{
+        padding: 2rem;
+        p{
+            font-size: $Size * 4;
+            color: $White;
+            //font-weight: bold;
+        }
+    }
+}
+
+@media screen and (max-width: 670px) {
+    .cover{
+        background-image: url(images/mobile/image-hero.jpg);
+        align-items: flex-start;
+        &-center{
+            height: 50vh;
+            margin-top: 2rem;
+        }
+    }
+    .navigation{
+        &-links{
+            position: fixed;
+            background: $Black;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            z-index: 4;
+            overflow: hidden;
+            transform: translateX(0);
+            transition: transform .3s ease-in;
+            li{
+                margin: 1rem;
+            }
+            //display: none;
+        }
+        &-links.active{
+            transform: translateX(100%);
+        }
+        &-burger{
+            cursor: pointer;
+            display: block;
+            z-index: 5;
+        }
+    }
+    .header{
+        max-width: max-content;
+        p{
+            font-size: $Size*2;
+        }
+    }
+}
+
+.present{
+    width: 80%;
+    margin: 5rem 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    &-img{
+        width: auto;
+        height: 100%;
+        overflow: hidden;
+        img{
+            width: 100%;
+            height: 100%;
+            transition: transform .3s ease-in;
+            z-index: -2;
+            &:hover{
+                transform: scale(0.8);
+            }
+        }
+    }
+    &-infos{
+        background: $White;
+        padding: 5rem 0 0 5rem;
+        margin-left: -10rem;
+        //transform: translateX(-10rem);
+        //border-top: 2px solid hotpink;
+        //border-right: 2px solid hotpink;
+        width: 50%;
+        z-index: 2;
+        p{
+            font-size: $Size * 3;
+            color: $Black;
+            text-align: left;
+            padding-bottom: 1rem;
+        }
+        h2{
+            font-size: $Size;
+            color: $VeryDarkGray;
+            text-align: left;
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .present{
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        &-infos{
+            width: 100%;
+            margin: 0;
+            padding: 2rem 0;
+        }
+    }
+}
+
+.title{
+    width: 80%;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    p{
+        font-size: $Size * 3;
+        color: $Black;
+    }
+}
+
+.title-button button{
+    display: none;
+}
+
+@media screen and (max-width: 700px) {
+    .title-button button{
+        display: block;
+        margin-bottom: 2rem;
+    }
+
+    .title{
+        //justify-content: center;
+        align-items: flex-start;
+        button{
+            display: none;
+        }
+    }
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 3rem;
+    &-cards{
+        width: 80%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    &-card{
+        width: 24%;
+        height: 450px;
+        background-size: cover;
+        //margin: 1rem;
+        display: flex;
+        align-items: flex-end;
+        p{
+            font-size: $Size * 2;
+            color: $White;
+            margin: 0 0 1rem 1rem;
+            transition: transform .3s ease-in;
+        }
+        transition: opacity .3s ease-in;
+        &:hover{
+            cursor: pointer;
+            //opacity: .5;   
+            p{
+                transform: translateY(-190px);;
+            }
+        }
+    }
+    &-card:nth-child(1){
+        background-image: url(images/desktop/image-deep-earth.jpg);
+        margin-bottom: 1rem;
+    }
+    &-card:nth-child(2){
+        background-image: url(images/desktop/image-night-arcade.jpg);
+        margin-bottom: 1rem;
+    }
+    &-card:nth-child(3){
+        background-image: url(images/desktop/image-soccer-team.jpg);
+        margin-bottom: 1rem;
+    }
+    &-card:nth-child(4){
+        background-image: url(images/desktop/image-grid.jpg);
+        margin-bottom: 1rem;
+    }
+    &-card:nth-child(5){
+        background-image: url(images/desktop/image-from-above.jpg);
+    }
+    &-card:nth-child(6){
+        background-image: url(images/desktop/image-pocket-borealis.jpg);
+    }
+    &-card:nth-child(7){
+        background-image: url(images/desktop/image-curiosity.jpg);
+    }
+    &-card:nth-child(8){
+        background-image: url(images/desktop/image-fisheye.jpg);
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .container-cards{
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .container-card{
+        width: 100%;
+        height: 200px;
+        &:hover{
+            p{
+                transform: translate(0);
+            }
+        }
+    }
+
+    .container-card:nth-child(1){
+        background-image: url(images/mobile/image-deep-earth.jpg);
+    }
+    .container-card:nth-child(2){
+        background-image: url(images/mobile/image-night-arcade.jpg);
+    }
+    .container-card:nth-child(3){
+        background-image: url(images/mobile/image-soccer-team.jpg);
+    }
+    .container-card:nth-child(4){
+        background-image: url(images/mobile/image-grid.jpg);
+    }
+    .container-card:nth-child(5){
+        background-image: url(images/mobile/image-from-above.jpg);
+        margin-bottom: 1rem;
+    }
+    .container-card:nth-child(6){
+        background-image: url(images/mobile/image-pocket-borealis.jpg);
+        margin-bottom: 1rem;
+    }
+    .container-card:nth-child(7){
+        background-image: url(images/mobile/image-curiosity.jpg);
+        margin-bottom: 1rem;
+    }
+    .container-card:nth-child(8){
+        background-image: url(images/mobile/image-fisheye.jpg);
+        //margin-bottom: 1rem;
+    }
+
+}
+
+.center-footer{
+    background: $Black;
+}
+
+.footer{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    &-left{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        margin: 1rem 0;
+        &-logo{
+            margin-bottom: 1rem;
+            color:$White;
+            font-size: 25px;
+        }
+        &-links{
+            font-size: 15px;
+            display: flex;
+            li:nth-child(1){
+                margin: 0;
+            }
+            li{
+                position: relative;
+                margin: 0 1rem;
+                padding: 0.25rem 0;
+                &::before{
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    width: 100%;
+                    background: $White;
+                    height: 1px;
+                    bottom: 0;
+                    transform-origin: 50% 0;
+                    transform: scaleX(0);
+                    transition: transform .4s;
+                }
+                &:hover::before{
+                    transform-origin: 50% 0;
+                    transform: scaleX(1);
+                }
+        }
+        }
+    }
+    &-right{
+        margin: 1rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        &-socials{
+            margin-bottom: 1rem;
+            img{
+                cursor: pointer;
+                margin: 0.5rem;
+            }
+        }
+        h3{
+            font-size: $Size;
+            color: $VeryDarkGray;
+        }
+    }
+}
+
+@media screen and (max-width: 700px){
+    .footer{
+        flex-direction: column;
+    }
+}
